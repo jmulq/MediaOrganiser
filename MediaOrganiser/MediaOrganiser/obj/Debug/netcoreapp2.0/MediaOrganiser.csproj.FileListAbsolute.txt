@@ -1,0 +1,11 @@
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.csprojResolveAssemblyReference.cache
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.csproj.CoreCompileInputs.cache
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.AssemblyInfoInputs.cache
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.AssemblyInfo.cs
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\bin\Debug\netcoreapp2.0\MediaOrganiser.deps.json
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\bin\Debug\netcoreapp2.0\MediaOrganiser.runtimeconfig.json
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\bin\Debug\netcoreapp2.0\MediaOrganiser.runtimeconfig.dev.json
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\bin\Debug\netcoreapp2.0\MediaOrganiser.dll
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\bin\Debug\netcoreapp2.0\MediaOrganiser.pdb
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.dll
+C:\Users\James\MediaOrganiser\MediaOrganiser\MediaOrganiser\obj\Debug\netcoreapp2.0\MediaOrganiser.pdb
