@@ -8,14 +8,18 @@ namespace MediaOrganiser.Models
 {
     public class MediaFile
     {
-        public int ID { get; set; }
-        public int UserID { get; set; }
-        public int MediaTypeID { get; set; }
+        public int Id { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
+
+        public int MediaTypeId { get; set; }
+        public MediaType MediaType { get; set; }
+
         public string Name { get; set; }
         public byte[] Thumbnail { get; set; }
 
-        public int CategoryID { get; set; }
-        public Category Category { get; set; }
+        public IList<MediaFileCategory> Categories { get; set; }
 
         public string Description { get; set; }
 
@@ -53,3 +57,4 @@ namespace MediaOrganiser.Models
         public byte SizeMB { get; set; }
     }
 }
+  

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using MediaOrganiser.Models;
+using MediaOrganiser.Models.IRepositories;
+using MediaOrganiser.Models.Repositories;
 
 namespace MediaOrganiser
 {
@@ -27,6 +29,8 @@ namespace MediaOrganiser
 
             services.AddDbContext<MediaOrganiserContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MediaOrganiserContext")));
+
+            services.AddScoped<IMediaFileRepository, MediaFileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

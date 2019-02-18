@@ -22,51 +22,51 @@ namespace MediaOrganiser.Models
 
                 //Seed Data 
                 //Media File data
-                context.MediaFiles.AddRange(
-                    new MediaFile
-                    {
-                        UserID = 1,
-                        MediaTypeID = 1,
-                        Name = "Cat Picture",
-                        Thumbnail = ImageConverter.ImageToByteArray("C:\\Users\\James\\MediaOrganiser\\MediaOrganiser\\MediaOrganiser\\Images\breadCat.jpg"),
-                        CategoryID = 1,
-                        Description = "A cute picture of my cat..."
-                    },
+            //    context.MediaFiles.AddRange(
+            //        new MediaFile
+            //        {
+            //            UserID = 1,
+            //            MediaTypeID = 1,
+            //            Name = "Cat Picture",
+            //            Thumbnail = ImageConverter.ImageToByteArray("C:\\Users\\James\\MediaOrganiser\\MediaOrganiser\\MediaOrganiser\\Images\breadCat.jpg"),
+            //            CategoryID = 1,
+            //            Description = "A cute picture of my cat..."
+            //        },
 
-                    new MediaFile
-                    {
-                        UserID = 1,
-                        MediaTypeID = 1,
-                        Name = "Cat Picture 2",
-                        Thumbnail = new byte[9],
-                        CategoryID = 1,
-                        Description = "A cute picture of another cat..."
-                    },
-                    new MediaFile
-                    {
-                        UserID = 1,
-                        MediaTypeID = 1,
-                        Name = "Dog Picture",
-                        Thumbnail = new byte[9],
-                        CategoryID = 2,
-                        Description = "A dog..."
-                    }
-                );
+            //        new MediaFile
+            //        {
+            //            UserID = 1,
+            //            MediaTypeID = 1,
+            //            Name = "Cat Picture 2",
+            //            Thumbnail = new byte[9],
+            //            CategoryID = 1,
+            //            Description = "A cute picture of another cat..."
+            //        },
+            //        new MediaFile
+            //        {
+            //            UserID = 1,
+            //            MediaTypeID = 1,
+            //            Name = "Dog Picture",
+            //            Thumbnail = new byte[9],
+            //            CategoryId = 2,
+            //            Description = "A dog..."
+            //        }
+            //    );
 
-                //Category Data
-                context.Categories.AddRange(
-                    new Category
-                    {
-                        CategoryName = "Animals"
-                    },
-                    new Category
-                    {
-                        CategoryName = "Travel"
-                    });
+            //    //Category Data
+            //    context.Categories.AddRange(
+            //        new Category
+            //        {
+            //            CategoryName = "Animals"
+            //        },
+            //        new Category
+            //        {
+            //            CategoryName = "Travel"
+            //        });
 
                 
 
-                context.SaveChanges();
+            //    context.SaveChanges();
             }
         }
     }

@@ -17,6 +17,12 @@ namespace MediaOrganiser.Models
         public DbSet<MediaType> MediaTypes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<MediaFileCategory> MediaFileCategories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MediaFileCategory>().HasKey(mf => new {mf.MediaFileId, mf.CategoryId});
+        }
 
     }
 }

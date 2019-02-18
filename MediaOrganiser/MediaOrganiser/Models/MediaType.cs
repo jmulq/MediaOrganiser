@@ -7,7 +7,9 @@ namespace MediaOrganiser.Models
 {
     public class MediaType
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string MediaTypeName { get; set; }
+
+        public MediaFile File { get; set; }
     }
 }

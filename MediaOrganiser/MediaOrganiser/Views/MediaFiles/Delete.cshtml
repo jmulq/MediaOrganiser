@@ -12,16 +12,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserID)
+            @Html.DisplayNameFor(model => model.UserId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserID)
+            @Html.DisplayFor(model => model.UserId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.MediaTypeID)
+            @Html.DisplayNameFor(model => model.MediaTypeId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.MediaTypeID)
+            @Html.DisplayFor(model => model.MediaTypeId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -35,12 +35,12 @@
         <dd>
             @Html.DisplayFor(model => model.Thumbnail)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryID)
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CategoryID)
-        </dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -68,7 +68,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

@@ -12,16 +12,16 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="UserID" class="control-label"></label>
-                <input asp-for="UserID" class="form-control" />
-                <span asp-validation-for="UserID" class="text-danger"></span>
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MediaTypeID" class="control-label"></label>
-                <input asp-for="MediaTypeID" class="form-control" />
-                <span asp-validation-for="MediaTypeID" class="text-danger"></span>
+                <label asp-for="MediaTypeId" class="control-label"></label>
+                <input asp-for="MediaTypeId" class="form-control" />
+                <span asp-validation-for="MediaTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -33,11 +33,11 @@
                 <input asp-for="Thumbnail" class="form-control" />
                 <span asp-validation-for="Thumbnail" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CategoryID" class="control-label"></label>
-                <input asp-for="CategoryID" class="form-control" />
-                <span asp-validation-for="CategoryID" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <input asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />

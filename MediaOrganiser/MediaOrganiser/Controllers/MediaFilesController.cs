@@ -6,22 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MediaOrganiser.Models;
+using MediaOrganiser.Models.IRepositories;
+using MediaOrganiser.Models.Repositories;
+using MediaOrganiser.ViewModels;
 
 namespace MediaOrganiser.Controllers
 {
     public class MediaFilesController : Controller
     {
-        private readonly MediaOrganiserContext _context;
-
-        public MediaFilesController(MediaOrganiserContext context)
+        private IMediaFileRepository mfRepository = null;
+        
+        public  MediaFilesController(IMediaFileRepository mfRepository)
         {
-            _context = context;
+            this.mfRepository = mfRepository;
         }
+
+
 
         // GET: MediaFiles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MediaFiles.ToListAsync());
+            IEnumerable<MediaFile> mediaFiles = await mfRepository.GetAllMediaFilesAsync();
+
+            return View(mediaFiles);
         }
 
         // GET: MediaFiles/Details/5
@@ -32,8 +39,7 @@ namespace MediaOrganiser.Controllers
                 return NotFound();
             }
 
-            var mediaFile = await _context.MediaFiles
-                .SingleOrDefaultAsync(m => m.ID == id);
+            MediaFile mediaFile = await mfRepository.GetMediaFileByIdAsync(id);
             if (mediaFile == null)
             {
                 return NotFound();
@@ -45,20 +51,22 @@ namespace MediaOrganiser.Controllers
         // GET: MediaFiles/Create
         public IActionResult Create()
         {
-            return View();
+            MediaFile mediaFile = new MediaFile();
+            
+            return View(mediaFile);
         }
+
 
         // POST: MediaFiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UserID,MediaTypeID,Name,Thumbnail,CategoryID,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
+        public async Task<IActionResult> Create([Bind("Id,UserId,MediaTypeId,Name,Thumbnail,Categories,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mediaFile);
-                await _context.SaveChangesAsync();
+                await mfRepository.AddMediaFileAsync(mediaFile);
                 return RedirectToAction(nameof(Index));
             }
             return View(mediaFile);
@@ -72,7 +80,7 @@ namespace MediaOrganiser.Controllers
                 return NotFound();
             }
 
-            var mediaFile = await _context.MediaFiles.SingleOrDefaultAsync(m => m.ID == id);
+            MediaFile mediaFile = await mfRepository.GetMediaFileByIdAsync(id);
             if (mediaFile == null)
             {
                 return NotFound();
@@ -85,9 +93,9 @@ namespace MediaOrganiser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,MediaTypeID,Name,Thumbnail,CategoryID,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,MediaTypeId,Name,Thumbnail,CategoryId,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
         {
-            if (id != mediaFile.ID)
+            if (id != mediaFile.Id)
             {
                 return NotFound();
             }
@@ -96,12 +104,11 @@ namespace MediaOrganiser.Controllers
             {
                 try
                 {
-                    _context.Update(mediaFile);
-                    await _context.SaveChangesAsync();
+                    await mfRepository.UpdateMediaFileAsync(mediaFile);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MediaFileExists(mediaFile.ID))
+                    if (!MediaFileExists(mediaFile.Id))
                     {
                         return NotFound();
                     }
@@ -123,8 +130,7 @@ namespace MediaOrganiser.Controllers
                 return NotFound();
             }
 
-            var mediaFile = await _context.MediaFiles
-                .SingleOrDefaultAsync(m => m.ID == id);
+            MediaFile mediaFile = await mfRepository.GetMediaFileByIdAsync(id);
             if (mediaFile == null)
             {
                 return NotFound();
@@ -138,15 +144,14 @@ namespace MediaOrganiser.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mediaFile = await _context.MediaFiles.SingleOrDefaultAsync(m => m.ID == id);
-            _context.MediaFiles.Remove(mediaFile);
-            await _context.SaveChangesAsync();
+            MediaFile mediaFile = await mfRepository.GetMediaFileByIdAsync(id);
+            await mfRepository.DeleteMediaFileAsync(mediaFile);
             return RedirectToAction(nameof(Index));
         }
 
         private bool MediaFileExists(int id)
         {
-            return _context.MediaFiles.Any(e => e.ID == id);
+            return MediaFileExists(id);
         }
     }
 }

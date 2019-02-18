@@ -7,10 +7,11 @@ namespace MediaOrganiser.Models
 {
     public class Category
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string CategoryName { get; set; }
 
-        public MediaFile File { get; set; }
+        public IList<MediaFileCategory> MediaFiles { get; set; }
+
         
     }
 }
