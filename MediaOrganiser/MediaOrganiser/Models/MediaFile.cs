@@ -53,7 +53,7 @@ namespace MediaOrganiser.Models
 
         private DateTime? dateModified = null;
 
-        [Display(Name = "Size (MB)")]
+        [Display(Name = "Size (MB)")] 
         public byte SizeMB { get; set; }
     }
 }

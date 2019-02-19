@@ -56,7 +56,17 @@ namespace MediaOrganiser.Models.Repositories
 
         public async Task<bool> MediaFileExistsAsync(int id)
         {
-            return await context.MediaFiles.AnyAsync(e => e.Id == id);
+            return await context.MediaFiles.AnyAsync(mf => mf.Id == id);
+        }
+
+        public async Task<IEnumerable<MediaFile>> GetMediaFilesByCategoryAsync(int categoryId)
+        {
+            List<MediaFileCategory> mediaFileCategories =
+                await context.MediaFileCategories.Where(mfc => mfc.CategoryId == categoryId).ToListAsync();
+
+            List<int> mediaFileIds = mediaFileCategories.Select(mf => mf.MediaFileId).ToList();
+
+            return await context.MediaFiles.Where(mf => mediaFileIds.Contains(mf.Id)).ToListAsync();
         }
     }
 }

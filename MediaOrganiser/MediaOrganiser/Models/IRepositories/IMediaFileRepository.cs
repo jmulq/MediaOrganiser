@@ -19,6 +19,6 @@ namespace MediaOrganiser.Models.IRepositories
 
         Task<bool> MediaFileExistsAsync(int id);
 
-        
+        Task<IEnumerable<MediaFile>> GetMediaFilesByCategoryAsync(int categoryId);
     }
 }
