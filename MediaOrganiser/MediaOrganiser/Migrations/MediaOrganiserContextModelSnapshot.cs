@@ -43,6 +43,8 @@ namespace MediaOrganiser.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<byte[]>("FilePath");
+
                     b.Property<int>("MediaTypeId");
 
                     b.Property<string>("Name");
@@ -55,8 +57,7 @@ namespace MediaOrganiser.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MediaTypeId")
-                        .IsUnique();
+                    b.HasIndex("MediaTypeId");
 
                     b.HasIndex("UserId");
 
@@ -105,8 +106,8 @@ namespace MediaOrganiser.Migrations
             modelBuilder.Entity("MediaOrganiser.Models.MediaFile", b =>
                 {
                     b.HasOne("MediaOrganiser.Models.MediaType", "MediaType")
-                        .WithOne("File")
-                        .HasForeignKey("MediaOrganiser.Models.MediaFile", "MediaTypeId")
+                        .WithMany()
+                        .HasForeignKey("MediaTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MediaOrganiser.Models.User", "User")

@@ -58,6 +58,7 @@ namespace MediaOrganiser.Migrations
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    FilePath = table.Column<byte[]>(nullable: true),
                     MediaTypeId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     SizeMB = table.Column<byte>(nullable: false),
@@ -113,8 +114,7 @@ namespace MediaOrganiser.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_MediaFiles_MediaTypeId",
                 table: "MediaFiles",
-                column: "MediaTypeId",
-                unique: true);
+                column: "MediaTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MediaFiles_UserId",

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace MediaOrganiser.Models
 {
@@ -12,7 +15,7 @@ namespace MediaOrganiser.Models
 
         public int UserId { get; set; }
         public User User { get; set; }
-
+        
         public int MediaTypeId { get; set; }
         public MediaType MediaType { get; set; }
 
@@ -55,6 +58,22 @@ namespace MediaOrganiser.Models
 
         [Display(Name = "Size (MB)")] 
         public byte SizeMB { get; set; }
+
+        [DisplayName("Upload File")]
+        public byte[] FilePath { get; set; }
+
+    }
+
+    public class CreateMediaFileViewModel
+    {
+        public int UserId { get; set; }
+        public int MediaTypeId { get; set; }
+        public string Name { get; set; }
+        public byte[] Thumbnail { get; set; }
+        //public IList<MediaFileCategory> Categories { get; set; }
+        public string Description { get; set; }
+        public byte SizeMB { get; set; }
+        public IFormFile FilePath { get; set; }
     }
 }
   

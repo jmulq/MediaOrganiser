@@ -9,6 +9,8 @@ using MediaOrganiser.Models;
 using MediaOrganiser.Models.IRepositories;
 using MediaOrganiser.Models.Repositories;
 using MediaOrganiser.ViewModels;
+using System.Drawing;
+using System.IO;
 
 namespace MediaOrganiser.Controllers
 {
@@ -62,11 +64,32 @@ namespace MediaOrganiser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,MediaTypeId,Name,Thumbnail,Categories,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
+        public async Task<IActionResult> Create(CreateMediaFileViewModel mediaFile)
         {
             if (ModelState.IsValid)
             {
-                await mfRepository.AddMediaFileAsync(mediaFile);
+                var dbMediaFile = new MediaFile()
+                {
+                    UserId = mediaFile.UserId,
+                    MediaTypeId = mediaFile.MediaTypeId,
+                    Name = mediaFile.Name,
+                    Description = mediaFile.Description,
+                    SizeMB = mediaFile.SizeMB
+                };
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    await mediaFile.FilePath.CopyToAsync(memoryStream);
+                    dbMediaFile.FilePath = memoryStream.ToArray();
+
+                    var bitmap = new Bitmap(memoryStream);
+                    // resize bitmap
+                    // set resized image to the thumbnail propery
+                    Bitmap resizedBitmap = ImageConverter.ThumbnailGenerator(bitmap, 10, 10);
+                    dbMediaFile.Thumbnail = ImageConverter.BitMapToByte(resizedBitmap);
+                }
+
+                await mfRepository.AddMediaFileAsync(dbMediaFile);
                 return RedirectToAction(nameof(Index));
             }
             return View(mediaFile);
@@ -93,7 +116,7 @@ namespace MediaOrganiser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,MediaTypeId,Name,Thumbnail,CategoryId,Description,DateCreated,DateModified,SizeMB")] MediaFile mediaFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,MediaTypeId,Name,Thumbnail,CategoryId,Description,DateCreated,DateModified,SizeMB,FilePath")] MediaFile mediaFile)
         {
             if (id != mediaFile.Id)
             {
@@ -152,6 +175,18 @@ namespace MediaOrganiser.Controllers
         private bool MediaFileExists(int id)
         {
             return MediaFileExists(id);
+        }
+
+
+
+        public async Task<ActionResult> RenderImage(int mediaFileId)
+        {
+            MediaFile mediaFile = await mfRepository.GetMediaFileByIdAsync(mediaFileId);
+
+            byte[] photoBack = mediaFile.Thumbnail;
+
+            return File(photoBack, "image/png");
+
         }
     }
 }

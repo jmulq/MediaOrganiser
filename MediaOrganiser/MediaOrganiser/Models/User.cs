@@ -1,4 +1,6 @@
-﻿namespace MediaOrganiser.Models
+﻿using System.Collections.Generic;
+
+namespace MediaOrganiser.Models
 {
     public class User
     {

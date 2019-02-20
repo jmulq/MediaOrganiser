@@ -10,6 +10,6 @@ namespace MediaOrganiser.Models
         public int Id { get; set; }
         public string MediaTypeName { get; set; }
 
-        public MediaFile File { get; set; }
+        //public MediaFile File { get; set; }
     }
 }
